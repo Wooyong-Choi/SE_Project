@@ -1,12 +1,12 @@
 package info;
 
-public enum Major {
-	CSE("컴퓨터학부"),
-	KR("국어국문학과");
+public enum College {
+	IT("IT대학"),
+	LibArt("인문대학");
 	
 	private String name;
 	
-	Major(String str) {
+	College(String str) {
 		name = str;
 	}
 	

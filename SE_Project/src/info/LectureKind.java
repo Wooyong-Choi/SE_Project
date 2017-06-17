@@ -1,12 +1,12 @@
 package info;
 
-public enum Major {
-	CSE("컴퓨터학부"),
-	KR("국어국문학과");
+public enum LectureKind {
+	libArts("교양"),
+	Major("전공");
 	
 	private String name;
 	
-	Major(String str) {
+	LectureKind(String str) {
 		name = str;
 	}
 	
