@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Lecture implements Serializable {
+	
 	private LectureKind kind;
-	private College openCol;
 	private String no;
 	private String name;
 	private int credit;
@@ -15,9 +15,8 @@ public class Lecture implements Serializable {
 	// Constructor
 	public Lecture() { }
 	
-	public Lecture(LectureKind kd, College open, String n, String nm, int cdt, ArrayList<String> t) {
+	public Lecture(LectureKind kd, String n, String nm, int cdt, ArrayList<String> t) {
 		kind = kd;
-		openCol = open;
 		no = n;
 		name = nm;
 		credit = cdt;
@@ -32,14 +31,6 @@ public class Lecture implements Serializable {
 
 	public void setKind(LectureKind kind) {
 		this.kind = kind;
-	}
-
-	public College getOpenCol() {
-		return openCol;
-	}
-
-	public void setOpenCol(College openCol) {
-		this.openCol = openCol;
 	}
 
 	public String getNum() {

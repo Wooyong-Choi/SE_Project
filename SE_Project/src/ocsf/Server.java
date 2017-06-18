@@ -12,7 +12,6 @@ public class Server {
 		AcceptThread acptThd = new AcceptThread(s_sock);
 		new Thread(acptThd).start();
 		
-		
 	}
 }
 

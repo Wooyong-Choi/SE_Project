@@ -12,6 +12,8 @@ public class User implements Serializable {
 		this.Password = PW;
 	}
 	
+	
+	// Getter & Setter
 	public String getID() {
 		return ID;
 	}

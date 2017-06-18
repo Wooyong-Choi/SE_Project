@@ -10,6 +10,4 @@ public abstract class DBAccessor {
 	
 	public abstract ArrayList<Serializable> readFile();
 	public abstract void writeFile(ArrayList<Serializable> items);
-	
-	
 }
