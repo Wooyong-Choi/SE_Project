@@ -1,8 +1,9 @@
 package info;
 
 public enum LectureKind {
-	libArts("교양"),
-	Major("전공");
+	기본소양("기본소양"),
+	전공기반("전공기반"),
+	공학전공("공학전공");
 	
 	private String name;
 	

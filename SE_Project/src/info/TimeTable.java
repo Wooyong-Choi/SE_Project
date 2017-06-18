@@ -1,14 +1,29 @@
 package info;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TimeTable {
+public class TimeTable implements Serializable {
 	
-	private ArrayList<Lecture> lectures;
+	private ArrayList<Lecture> lecList;
 	
-	public TimeTable() { }
+	public TimeTable() { lecList = new ArrayList<Lecture>(); }
 	
 	public TimeTable(ArrayList<Lecture> lec) {
-		lectures = lec;
+		lecList = lec;
 	}
+	
+	public void addLecture(Lecture lec) {
+		lecList.add(lec);
+	}
+
+	public ArrayList<Lecture> getLecList() {
+		return lecList;
+	}
+
+	public void setLecList(ArrayList<Lecture> lecList) {
+		this.lecList = lecList;
+	}
+	
+	
 }

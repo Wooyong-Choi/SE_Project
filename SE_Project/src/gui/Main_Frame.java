@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
-public class Main_Frame extends JFrame{
+public class Main_Frame extends JFrame {
 	JFrame main_frame;
 	
 	public Main_Frame() {

@@ -20,11 +20,12 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 
 	@Override
 	public void run() {
+		Packet pkt;
 		while(true) {
-			Packet pkt = (Packet) readFromSocket();
+			pkt = readFromSocket();
 
 			switch(pkt.getRequest()) {
-			case 1:
+			case 0:
 				Student usr = pkt.getStd();
 
 				for (Student std : stdDB.readFile()) {
@@ -39,7 +40,10 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				}
 				break;
 
-			case 2:
+			case 1:
+				pkt = new Packet(lecDB.readFile());
+				
+				writeToSocket(pkt);
 
 				break;
 			}

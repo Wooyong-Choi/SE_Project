@@ -7,11 +7,14 @@ public class Student extends User {
 	private String name;
 	private int year;
 	private String no;
-	private ArrayList<TimeTable> oldLectureList;
-	private ArrayList<TimeTable> temporaryList;
+	private TimeTable oldLectureList;
+	private TimeTable temporaryList;
 
 	public Student(String ID, String PW) {
 		super(ID, PW);
+		
+		oldLectureList = new TimeTable();
+		temporaryList = new TimeTable();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,19 +44,19 @@ public class Student extends User {
 		this.no = no;
 	}
 
-	public ArrayList<TimeTable> getOldLectureList() {
+	public TimeTable getOldLectureList() {
 		return oldLectureList;
 	}
 
-	public void setOldLectureList(ArrayList<TimeTable> oldLectureList) {
+	public void setOldLectureList(TimeTable oldLectureList) {
 		this.oldLectureList = oldLectureList;
 	}
 
-	public ArrayList<TimeTable> getTemporaryList() {
+	public TimeTable getTemporaryList() {
 		return temporaryList;
 	}
 
-	public void setTemporaryList(ArrayList<TimeTable> temporaryList) {
+	public void setTemporaryList(TimeTable temporaryList) {
 		this.temporaryList = temporaryList;
 	}
 	

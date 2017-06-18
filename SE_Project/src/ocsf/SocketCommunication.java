@@ -8,10 +8,12 @@ import java.net.Socket;
 public abstract class SocketCommunication {
 	
 	protected Socket sock;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
 	
 	protected Packet readFromSocket() {
 		try {
-			ObjectInputStream in = new ObjectInputStream(sock.getInputStream());
+			in = new ObjectInputStream(sock.getInputStream());
 			
 			return (Packet) in.readObject();
 			
@@ -28,11 +30,10 @@ public abstract class SocketCommunication {
 	
 	protected void writeToSocket(Packet data) {
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(sock.getOutputStream());
+			out = new ObjectOutputStream(sock.getOutputStream());
 			
 			out.writeObject(data);
 			
-			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

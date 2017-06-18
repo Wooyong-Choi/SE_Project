@@ -9,18 +9,22 @@ public class Lecture implements Serializable {
 	private String no;
 	private String name;
 	private int credit;
+	private boolean design;
 	private ArrayList<String> time;
 	
 
 	// Constructor
 	public Lecture() { }
 	
-	public Lecture(LectureKind kd, String n, String nm, int cdt, ArrayList<String> t) {
+	public Lecture(LectureKind kd, String n, String nm, int cdt, boolean d, String[] t) {
 		kind = kd;
 		no = n;
 		name = nm;
 		credit = cdt;
-		time = t;
+		design = d;
+		time = new ArrayList<String>();
+		for (String element : t) 
+			time.add(element);
 	}
 	
 	
@@ -64,4 +68,22 @@ public class Lecture implements Serializable {
 	public void setTime(ArrayList<String> time) {
 		this.time = time;
 	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public boolean isDesign() {
+		return design;
+	}
+
+	public void setDesign(boolean design) {
+		this.design = design;
+	}
+	
+	
 }

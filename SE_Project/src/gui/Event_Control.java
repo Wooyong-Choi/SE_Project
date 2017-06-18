@@ -36,6 +36,8 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 	
 	
 	public Event_Control() {
+		super();
+		
 		this.check = true;
 		this.ll = new Login_Layout();
 		this.ml = new Main_Layout();
@@ -62,8 +64,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		id_field.addActionListener(this);
 		pass_field.addActionListener(this);
 		
-		
-		
 		try {
 			sock = new Socket("127.0.0.1", Common.portNum);
 			
@@ -72,7 +72,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("ddddddddd");
 			e.printStackTrace();
 		}
 	}
