@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import info.Student;
+
 public class Main_Layout {
 	
 	private Main_Frame mf;
@@ -28,6 +30,9 @@ public class Main_Layout {
 	private JButton open;
 	private JButton schedule;
 	private JButton peep;
+
+	
+	private Student stdInfo;
 
 	public Main_Layout() {
 		this.current = new JButton("수강현황 조회");
@@ -111,4 +116,14 @@ public class Main_Layout {
 	public JButton getPeepBtn() {
 		return peep;
 	}
+
+	public Student getStdInfo() {
+		return stdInfo;
+	}
+
+	public void setStdInfo(Student stdInfo) {
+		this.stdInfo = stdInfo;
+	}
+	
+	
 }

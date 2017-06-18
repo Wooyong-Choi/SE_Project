@@ -3,39 +3,58 @@ package ocsf;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import info.Lecture;
+import info.Student;
+
 public class Packet implements Serializable {
 	
-	private String ID;
-	private String PW;
+	/**
+	 * -1 : Failure
+	 * 0 : Student
+	 * 1 : Lecture List
+	 */
+	private int request;
+	private Student std;
+	private ArrayList<Lecture> lecList;
 	
-	private ArrayList<Serializable> data;
+	public Packet() {
+		request = -1;
+	}
+	
+	public Packet(Student std) {
+		this.std = std;
+	}
+	
+	public Packet(ArrayList<Lecture> data) {
+		this.lecList = lecList;
+	}
 
 	
+
 	// Getter & Setter
-
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public String getPW() {
-		return PW;
-	}
-
-	public void setPW(String pW) {
-		PW = pW;
-	}
-
-	public ArrayList<Serializable> getData() {
-		return data;
-	}
-
-	public void setData(ArrayList<Serializable> data) {
-		this.data = data;
-	}
 	
-	
+
+	public int getRequest() {
+		return request;
+	}
+
+	public void setRequest(int request) {
+		this.request = request;
+	}
+	public Student getStd() {
+		return std;
+	}
+
+
+	public void setStd(Student std) {
+		this.std = std;
+	}
+
+	public ArrayList<Lecture> getLecList() {
+		return lecList;
+	}
+
+	public void setLecList(ArrayList<Lecture> lecList) {
+		this.lecList = lecList;
+	}
 }

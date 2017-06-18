@@ -9,11 +9,11 @@ public abstract class SocketCommunication {
 	
 	protected Socket sock;
 	
-	protected Object readFromSocket() {
+	protected Packet readFromSocket() {
 		try {
 			ObjectInputStream in = new ObjectInputStream(sock.getInputStream());
 			
-			return in.readObject();
+			return (Packet) in.readObject();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -26,7 +26,7 @@ public abstract class SocketCommunication {
 		return null;
 	}
 	
-	protected void writeToSocket(Object data) {
+	protected void writeToSocket(Packet data) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(sock.getOutputStream());
 			

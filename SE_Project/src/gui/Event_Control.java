@@ -3,12 +3,20 @@ package gui;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Event_Control extends JFrame implements Runnable, ActionListener {
+import info.Student;
+import ocsf.Common;
+import ocsf.Packet;
+import ocsf.SocketCommunication;
+
+public class Event_Control extends SocketCommunication implements Runnable, ActionListener {
 	
 	private JButton login_btn;
 	private JButton cur_btn;
@@ -24,6 +32,8 @@ public class Event_Control extends JFrame implements Runnable, ActionListener {
 	private Schedule_Menu_Panel schedule_menu;
 	private boolean check;
 	private JPanel change_pane;
+	
+	
 	
 	public Event_Control() {
 		this.check = true;
@@ -51,6 +61,20 @@ public class Event_Control extends JFrame implements Runnable, ActionListener {
 		login_btn.addActionListener(this);
 		id_field.addActionListener(this);
 		pass_field.addActionListener(this);
+		
+		
+		
+		try {
+			sock = new Socket("127.0.0.1", Common.portNum);
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ddddddddd");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -74,9 +98,22 @@ public class Event_Control extends JFrame implements Runnable, ActionListener {
 		}
 		
 		if (btn_String.equals("  로그인  ")) {
-			ll.getMainFrame().setVisible(false);
-			ml.getMainFrame().setVisible(true);
-			check = false;
+			Packet pkt = new Packet(new Student(id_field.getText(), pass_field.getText()));
+			writeToSocket(pkt);
+			pkt = readFromSocket();
+			
+			// 로그인 성공
+			if (pkt.getRequest() != -1) {
+				ml.setStdInfo(pkt.getStd());
+				
+				ll.getMainFrame().setVisible(false);
+				ml.getMainFrame().setVisible(true);
+				check = false;
+			}
+			// 로그인 실패
+			else {
+				System.out.println("실패");
+			}
 		}
 	}
 

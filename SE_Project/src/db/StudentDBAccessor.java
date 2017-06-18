@@ -10,18 +10,21 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StudentDBAccessor extends DBAccessor {
+import info.Student;
 
+public class StudentDBAccessor {
+	
+	private File file;
+	
 	public StudentDBAccessor() {
 		file = new File("student.db");
 	}
 	
-	@Override
-	public ArrayList<Serializable> readFile() {
+	public ArrayList<Student> readFile() {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
 			
-			ArrayList<Serializable> list = (ArrayList<Serializable>) in.readObject();
+			ArrayList<Student> list = (ArrayList<Student>) in.readObject();
 			
 			in.close();
 			
@@ -48,8 +51,7 @@ public class StudentDBAccessor extends DBAccessor {
 		return null;
 	}
 
-	@Override
-	public void writeFile(ArrayList<Serializable> items) {
+	public void writeFile(ArrayList<Student> items) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
 			

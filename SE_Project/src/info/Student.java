@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Student extends User {
 
 	private String name;
-	private int age;
+	private int year;
 	private String no;
 	private ArrayList<TimeTable> oldLectureList;
 	private ArrayList<TimeTable> temporaryList;
@@ -26,11 +26,11 @@ public class Student extends User {
 	}
 
 	public int getAge() {
-		return age;
+		return year;
 	}
 
 	public void setAge(int age) {
-		this.age = age;
+		this.year = age;
 	}
 
 	public String getNo() {
