@@ -10,21 +10,19 @@ public class Lecture implements Serializable {
 	private String name;
 	private int credit;
 	private boolean design;
-	private ArrayList<String> time;
+	private Time time;
 	
 
 	// Constructor
 	public Lecture() { }
 	
-	public Lecture(LectureKind kd, String n, String nm, int cdt, boolean d, String[] t) {
+	public Lecture(LectureKind kd, String n, String nm, int cdt, boolean d, Time t) {
 		kind = kd;
 		no = n;
 		name = nm;
 		credit = cdt;
 		design = d;
-		time = new ArrayList<String>();
-		for (String element : t) 
-			time.add(element);
+		time = t;
 	}
 	
 	
@@ -61,11 +59,11 @@ public class Lecture implements Serializable {
 		this.credit = credit;
 	}
 
-	public ArrayList<String> getTime() {
+	public Time getTime() {
 		return time;
 	}
 
-	public void setTime(ArrayList<String> time) {
+	public void setTime(Time time) {
 		this.time = time;
 	}
 

@@ -1,6 +1,7 @@
 package ocsf;
 
 import java.net.Socket;
+import java.util.ArrayList;
 
 import db.LectureDBAccessor;
 import db.StudentDBAccessor;
@@ -29,9 +30,9 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				Student usr = pkt.getStd();
 
 				for (Student std : stdDB.readFile()) {
-					if (std.getID().equals(usr.getID())	&& std.getPassword().equals(std.getPassword())) {
+					if (std.getID().equals(usr.getID())	&& std.getPassword().equals(usr.getPassword())) {
 						// 로그인 성공
-						writeToSocket(new Packet(std));
+						writeToSocket(new Packet(std, 0));
 
 					} else {
 						// 로그인 실패
@@ -41,6 +42,20 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				break;
 
 			case 1:
+				Student usr1 = pkt.getStd();
+				
+				ArrayList<Student> stdList = stdDB.readFile();
+				
+				for (int i = 0; i < stdList.size(); i++) {
+					if (stdList.get(i).getID().equals(usr1.getID())	&& stdList.get(i).getPassword().equals(usr1.getPassword())) {
+						stdList.set(i, usr1);
+						stdDB.writeFile(stdList);
+						break;
+					}
+				}
+				break;
+				
+			case 2:
 				pkt = new Packet(lecDB.readFile());
 				
 				writeToSocket(pkt);

@@ -5,33 +5,35 @@ import db.StudentDBAccessor;
 import info.Lecture;
 import info.LectureKind;
 import info.Student;
+import info.Time;
+import info.TimeTable;
 
 public class TestMain {
+	
 	public static void main(String[] args) {
 		
+		TimeTable lecList = new TimeTable();
+		
+		lecList.addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true, new Time(1, "1A", "2A")));
+		lecList.addLecture(new Lecture(LectureKind.전공기반, "COMP456", "공수", 3, true, new Time(2, "2B", "3A")));
+		lecList.addLecture(new Lecture(LectureKind.기본소양, "COMP789", "기창공", 3, true, new Time(3, "3A", "4A")));
+		
+		
+		
 		// case 1
-		Student temp = new Student("4321", "4321");
-		temp.setName("abcc");
-		temp.setNo("4321");
-		temp.setAge(3);
-		String[] a = {"1A", "1B"};
-		String[] b = {"2A", "2B"};
-		String[] c = {"3A", "3B"};
-		temp.getOldLectureList().addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true, a));
-		temp.getOldLectureList().addLecture(new Lecture(LectureKind.기본소양, "COMP456", "소공", 2, false, b));
-		temp.getOldLectureList().addLecture(new Lecture(LectureKind.전공기반, "COMP789", "소공", 2, false, c));
+		Student temp = new Student("4321", "4321", "abcc", 3, "4321");
+		temp.setOldLectureList(lecList);
 		
 		// case 2
-		Student temp2 = new Student("1234", "1234");
-		temp2.setName("이름이름");
-		temp2.setNo("1234");
-		temp2.setAge(4);
-		temp2.getOldLectureList().addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true, a));
-		temp2.getOldLectureList().addLecture(new Lecture(LectureKind.기본소양, "COMP456", "소공", 2, false, b));
-		temp2.getOldLectureList().addLecture(new Lecture(LectureKind.전공기반, "COMP789", "소공", 2, false, c));
+		Student temp2 = new Student("1234", "1234", "abaa", 4, "1234");
+		temp2.setOldLectureList(lecList);
 		
+		
+		
+		// Testcase generate
 		StudentDBAccessor stdDB = new StudentDBAccessor();
 		LectureDBAccessor lecDB = new LectureDBAccessor();
+		
 		ArrayList<Student> tempList = new ArrayList<Student>();
 
 		tempList.add(temp);
@@ -39,6 +41,6 @@ public class TestMain {
 		
 		stdDB.writeFile(tempList);
 		
-		lecDB.writeFile(temp2.getOldLectureList().getLecList());
+		lecDB.writeFile(lecList.getLecList());
 	}
 }

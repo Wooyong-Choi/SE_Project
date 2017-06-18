@@ -18,6 +18,17 @@ public class Student extends User {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Student(String ID, String PW, String n, int y, String no) {
+		super(ID, PW);
+		
+		name = n;
+		year = y;
+		this.no = no;
+		
+		oldLectureList = new TimeTable();
+		temporaryList = new TimeTable();
+		// TODO Auto-generated constructor stub
+	}
 	
 	// Getter & Setter
 	public String getName() {

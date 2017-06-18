@@ -10,8 +10,9 @@ public class Packet implements Serializable {
 	
 	/**
 	 * -1 : Failure
-	 * 0 : Student
-	 * 1 : Lecture List
+	 * 0 : Read Student
+	 * 1 : Write Student
+	 * 2 : Read Lecture List
 	 */
 	private int request;
 	private Student std;
@@ -21,8 +22,9 @@ public class Packet implements Serializable {
 		request = -1;
 	}
 	
-	public Packet(Student std) {
+	public Packet(Student std, int req) {
 		this.std = std;
+		request = req;
 	}
 	
 	public Packet(ArrayList<Lecture> data) {
