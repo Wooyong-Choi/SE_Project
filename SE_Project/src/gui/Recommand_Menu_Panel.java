@@ -77,6 +77,8 @@ public class Recommand_Menu_Panel extends JDialog {
 		table.getTableHeader().setFont(mainfont);
 		table.setRowHeight(100);
 		
+		
+		
 		// DefaultTableCellHeaderRenderer 생성 (가운데 정렬을 위한)
 		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
 		 
