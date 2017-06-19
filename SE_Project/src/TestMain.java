@@ -134,8 +134,8 @@ public class TestMain {
 		
 		Random a = new Random();
 		boolean[] mark = new boolean[40];
-		
-		for (int i = 0; i < 5; i++) {
+		int rndidx = Math.abs(a.nextInt()) % 5 + 4;
+		for (int i = 0; i < rndidx; i++) {
 			int rnd = Math.abs(a.nextInt()) % 40;
 			if (mark[rnd] == false) {
 				std.getTemporaryList().getLecList().add(timeTable.getLecList().get(rnd));
