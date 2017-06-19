@@ -3,95 +3,101 @@ package info;
 import java.io.Serializable;
 
 public class Lecture implements Serializable {
-   
-   private LectureKind kind;
-   private String no;
-   private String name;
-   private int credit;
-   private int year;
-   private boolean design;
-   private int star;
-   
 
-   // Constructor
-   public Lecture() { }
-   
-   public Lecture(int y, LectureKind kd, String n, String nm, int cdt, boolean d) {
-      year = y;
-      kind = kd;
-      no = n;
-      name = nm;
-      credit = cdt;
-      design = d;
-      star = 0;
-   }
-   
-   
-   // Getter & Setter
-   
-   public void up_star() {
-      star++;
-   }
-   
-   public int getStar() {
-      return star;
-   }
-   
-   
-   public LectureKind getKind() {
-      return kind;
-   }
+	private LectureKind kind;
+	private String no;
+	private String name;
+	private int credit;
+	private int year;
+	private boolean design;
+	private int star;
 
-   public int getYear() {
-      return year;
-   }
 
-   public void setYear(int year) {
-      this.year = year;
-   }
+	// Constructor
+	public Lecture() { }
 
-   public void setKind(LectureKind kind) {
-      this.kind = kind;
-   }
+	public Lecture(int y, LectureKind kd, String n, String nm, int cdt, boolean d) {
+		year = y;
+		kind = kd;
+		no = n;
+		name = nm;
+		credit = cdt;
+		design = d;
+		star = 0;
+	}
 
-   public String getNum() {
-      return no;
-   }
 
-   public void setNum(String num) {
-      this.no = num;
-   }
+	// Getter & Setter
 
-   public String getName() {
-      return name;
-   }
+	public void up_star() {
+		star++;
+	}
 
-   public void setName(String name) {
-      this.name = name;
-   }
+	public int getStar() {
+		return star;
+	}
 
-   public int getCredit() {
-      return credit;
-   }
 
-   public void setCredit(int credit) {
-      this.credit = credit;
-   }
+	public LectureKind getKind() {
+		return kind;
+	}
 
-   public String getNo() {
-      return no;
-   }
+	public int getYear() {
+		return year;
+	}
 
-   public void setNo(String no) {
-      this.no = no;
-   }
+	public void setYear(int year) {
+		this.year = year;
+	}
 
-   public boolean isDesign() {
-      return design;
-   }
+	public void setKind(LectureKind kind) {
+		this.kind = kind;
+	}
 
-   public void setDesign(boolean design) {
-      this.design = design;
-   }
-   
+	public String getNum() {
+		return no;
+	}
+
+	public void setNum(String num) {
+		this.no = num;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public boolean isDesign() {
+		return design;
+	}
+
+	public void setDesign(boolean design) {
+		this.design = design;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+
+
 }

@@ -36,7 +36,7 @@ public class Packet implements Serializable {
 	}
 	
 	/**
-	 * request code = 0, 1
+	 * request code = 0, 1, 3
 	 * @param std
 	 * @param req
 	 */

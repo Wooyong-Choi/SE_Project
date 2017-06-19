@@ -63,7 +63,19 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				
 			case 4:  // 4 : Write Lecture List
 				System.out.println("Request 4");
-				lecDB.writeFile(pkt.getLecList());
+				ArrayList<Lecture> lecs = pkt.getLecList();
+				
+				if (lecs.size() == 57)
+					lecDB.writeFile(lecs);
+				else {
+					ArrayList<Lecture> file = lecDB.readFile();
+					for (int i = 0; i < 57; i++)
+						for (int j = 0; j < lecs.size(); j++)
+							if (file.get(i).getNo().equals(lecs.get(j).getNo()))
+								file.get(i).up_star();
+					
+					lecDB.writeFile(file);
+				}
 				break;
 			}
 		}
@@ -73,6 +85,18 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 		for (Student std : stdDB.readFile()) {
 			if (std.getID().equals(usr.getID()) && std.getPassword().equals(usr.getPassword())) {
 				// 로그인 성공
+				ArrayList<Lecture> file = lecDB.readFile();
+				ArrayList<Lecture> old = std.getOldLectureList().getLecList();
+				ArrayList<Lecture> temp = std.getTemporaryList().getLecList();
+				for (int i = 0; i < file.size(); i++) {
+					for (int j = 0; j < old.size(); j++) 
+						if (old.get(j).getNo().equals(file.get(i).getNo()))
+							old.get(j).setStar(file.get(i).getStar());
+					
+					for (int j = 0; j < temp.size(); j++)
+						if (temp.get(j).getNo().equals(file.get(i).getNo()))
+							temp.get(j).setStar(file.get(i).getStar());
+				}
 				return std;
 			}
 		}

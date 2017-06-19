@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +22,7 @@ public class Recommand_Menu_Panel extends JDialog {
 	private Font mainfont = new Font("main", Font.BOLD, 30);
 	private String[][] row_contents;
 	private ArrayList<Lecture> lecList;
+	private boolean[] clickChk;
 	
 	public Recommand_Menu_Panel(ArrayList<Lecture> lec) {
 		setTitle("개설강좌 조회");
@@ -28,7 +30,10 @@ public class Recommand_Menu_Panel extends JDialog {
 		
 		lecList = lec;
 		
+		
 		row_contents = new String[lecList.size()][7];
+
+		clickChk = new boolean[lecList.size()];
 		
 		for (int i = 0; i < lecList.size(); i++) {
 			for (int j = 0; j < 7; j++) {
@@ -108,6 +113,35 @@ public class Recommand_Menu_Panel extends JDialog {
 
 	public void setLecList(ArrayList<Lecture> lecList) {
 		this.lecList = lecList;
+	}
+
+	public ListSelectionModel getSelectionModel() {
+		// TODO Auto-generated method stub
+		return table.getSelectionModel();
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public DefaultTableModel getModel() {
+		return model;
+	}
+
+	public void setModel(DefaultTableModel model) {
+		this.model = model;
+	}
+
+	public boolean[] getClickChk() {
+		return clickChk;
+	}
+
+	public void setClickChk(int i) {
+		this.clickChk[i] = true;
 	}
 	
 	
