@@ -97,7 +97,7 @@ public class TestMain {
 		Random a = new Random();
 		boolean[] mark = new boolean[40];
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 30; i++) {
 			int rnd = Math.abs(a.nextInt()) % 40;
 			if (mark[rnd] == false) {
 				temp.getOldLectureList().getLecList().add(timeTable.getLecList().get(rnd));

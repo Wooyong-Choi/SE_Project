@@ -13,6 +13,50 @@ public class TimeTable implements Serializable {
 		lecList = lec;
 	}
 	
+	public int calTotalCredit() {
+		int sum = 0;
+		for (Lecture lec : lecList) {
+			sum += lec.getCredit();
+		}
+		return sum;
+	}
+	
+	public int calDesignCredit() {
+		int sum = 0;
+		for (Lecture lec : lecList) {
+			if (lec.isDesign())
+				sum += lec.getCredit();
+		}
+		return sum;
+	}
+	
+	public int calMajorCredit() {
+		int sum = 0;
+		for (Lecture lec : lecList) {
+			if (lec.getKind() == LectureKind.공학전공)
+				sum += lec.getCredit();
+		}
+		return sum;
+	}
+	
+	public int calLibArtCredit() {
+		int sum = 0;
+		for (Lecture lec : lecList) {
+			if (lec.getKind() == LectureKind.기본소양)
+				sum += lec.getCredit();
+		}
+		return sum;
+	}
+	
+	public int calBaseCredit() {
+		int sum = 0;
+		for (Lecture lec : lecList) {
+			if (lec.getKind() == LectureKind.전공기반)
+				sum += lec.getCredit();
+		}
+		return sum;
+	}
+	
 	public void addLecture(Lecture lec) {
 		lecList.add(lec);
 	}

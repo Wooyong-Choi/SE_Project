@@ -5,9 +5,8 @@ import gui.Event_Control;
 public class Client {
 	
 	public static void main(String[] args) {
-		
+
+		System.out.println("GUI 시작");
 		new Thread(new Event_Control()).start();
-		
-		System.out.println("로그인 layout 시작");
 	}
 }

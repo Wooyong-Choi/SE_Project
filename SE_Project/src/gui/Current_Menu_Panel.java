@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import info.Student;
+import info.TimeTable;
+
 public class Current_Menu_Panel {
 	private JTable table;
 	private JPanel contents_Panel;
@@ -24,23 +27,28 @@ public class Current_Menu_Panel {
 	private JScrollPane scroll;
 	private DefaultTableCellRenderer rend;
 	
-	public Current_Menu_Panel() {
+	public Current_Menu_Panel(Student std) {
 		this.rend = new DefaultTableCellRenderer();
 		this.menu_name = new JLabel("수강현황 조회");
 		this.mainFont = new Font("main", Font.BOLD, 35);
 		this.contents_Panel = new JPanel(new BorderLayout(15, 15));
 		this.grade = new JButton("강의 추천하기");
 		
+		TimeTable time = std.getOldLectureList();
+		int tCredit = time.calTotalCredit();
+		int dCredit = time.calDesignCredit();
+		int mCredit = time.calMajorCredit();
+		int bCredit = time.calBaseCredit();
+		int lCredit = time.calLibArtCredit();
 		
 		//이부분에 테이블 contents 초기화
 		String[] header = {" ", "현재학점", "남은학점", "졸업요건"};
 		String[][] contents = {
-				{"총 이수학점", " ", " ", " "},
-				{"공학전공", " ", " ", " "},
-				{"설계학점", " ", " ", " "},
-				{"전공기반", " ", " ", " "},
-				{"기본소양", " ", " ", " "},
-				{"ABEEK 총 이수학점", " ", " ", " "},
+				{"총 이수학점", tCredit+"", 150-tCredit+"", "150"},
+				{"공학전공"  , mCredit+"", 75-mCredit+"" ,  "75"},
+				{"설계학점"  , dCredit+"", 16-dCredit+"" ,  "16"},
+				{"전공기반"  , bCredit+"", 24-bCredit+"", "24"},
+				{"기본소양"  , lCredit+"", 15-lCredit+"", "15"}
 				};
 		
 		model = new DefaultTableModel(contents, header);
@@ -70,6 +78,7 @@ public class Current_Menu_Panel {
 		contents_Panel.add(menu_name, BorderLayout.NORTH);
 		contents_Panel.add(scroll, BorderLayout.CENTER);
 		contents_Panel.add(grade, BorderLayout.SOUTH);
+		
 	}
 	
 	public JTable getTable() {

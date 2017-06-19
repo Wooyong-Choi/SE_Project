@@ -53,25 +53,8 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       
       this.cur_btn = ml.getCurrentBtn();
       this.sche_btn = ml.getScheduleBtn();
-      
-      this.current_menu = new Current_Menu_Panel(std);
-      this.schedule_menu = new Schedule_Menu_Panel();
-      
-      open_btn = schedule_menu.getOpenLectureBtn();
-      
-      login_main_panel = ll.getMainPanel();
-      main_main_panel = ml.getMainPanel();
-      
-      //시작은 수강 현황 조회하기로 시작.
-      change_pane = ml.getMainPanel();
-      change_pane.add(current_menu.getContentsPanel());
-      
-      cur_btn.addActionListener(this);
-      sche_btn.addActionListener(this);
+
       login_btn.addActionListener(this);
-      id_field.addActionListener(this);
-      pass_field.addActionListener(this);
-      open_btn.addActionListener(this);
       mem_btn.addActionListener(this);
       
       try {
@@ -115,7 +98,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          writeToSocket(pkt);
          pkt = readFromSocket();
          
-         // 로그인 성공
+         // 변경하기 성공
          if (pkt.getRequest() != -1) {
             Student std = pkt.getStd();
             std.setID(icd.getChange_id_field().getText());
@@ -126,7 +109,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             
             icd.setVisible(false);
          }
-         // 로그인 실패
+         // 변경하기 실패
          else {
             System.out.println("실패");
          }
@@ -162,6 +145,24 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             System.out.println("로그인 성공");
             std = pkt.getStd();
             ml.setStdInfo(std);
+            
+            this.current_menu = new Current_Menu_Panel(std);
+            this.schedule_menu = new Schedule_Menu_Panel();
+            
+            open_btn = schedule_menu.getOpenLectureBtn();
+            
+            login_main_panel = ll.getMainPanel();
+            main_main_panel = ml.getMainPanel();
+            
+            //시작은 수강 현황 조회하기로 시작.
+            change_pane = ml.getMainPanel();
+            change_pane.add(current_menu.getContentsPanel());
+
+            cur_btn.addActionListener(this);
+            sche_btn.addActionListener(this);
+            id_field.addActionListener(this);
+            pass_field.addActionListener(this);
+            open_btn.addActionListener(this);
             
             ll.getMainFrame().setVisible(false);
             ml.getMainFrame().setVisible(true);
