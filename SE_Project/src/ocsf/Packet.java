@@ -14,7 +14,6 @@ public class Packet implements Serializable {
 	 * 1 : Write Student (갱신할 때)
 	 * 2 : Read Lecture List
 	 * 3 : Peep other's timetable
-	 * 4 : Write Lecture List
 	 */
 	private int request;
 	private Student std;
@@ -47,11 +46,6 @@ public class Packet implements Serializable {
 	
 	public Packet(ArrayList<Lecture> data) {
 		this.lecList = data;
-	}
-
-	public Packet(ArrayList<Lecture> data, int req) {
-		this.lecList = data;
-		request = req;
 	}
 	
 	// Getter & Setter

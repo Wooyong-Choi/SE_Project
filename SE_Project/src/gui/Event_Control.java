@@ -3,9 +3,6 @@ package gui;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -18,7 +15,6 @@ import javax.swing.JPanel;
 import gui.Open_Menu_Panel;
 import info.Lecture;
 import info.Student;
-import info.TimeTable;
 import ocsf.Common;
 import ocsf.Packet;
 import ocsf.SocketCommunication;
@@ -31,7 +27,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private JButton mem_btn;
    private JButton change_btn;
    private JButton open_btn;
-   private JButton peep_btn;
    private Login_Layout ll;
    private String btn_String;
    private TextField id_field, pass_field;
@@ -45,8 +40,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private JPanel change_pane;
    private Info_Change_Dialog icd;
    private Open_Menu_Panel omp;
-   private Peep_Menu_Panel peep_menu;
-   private Recommand_Menu_Panel recm_menu;
    
    private Student std;
    
@@ -62,7 +55,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       
       this.cur_btn = ml.getCurrentBtn();
       this.sche_btn = ml.getScheduleBtn();
-      this.peep_btn = ml.getPeepBtn();
       
       login_btn.addActionListener(this);
       mem_btn.addActionListener(this);
@@ -163,7 +155,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             
             open_btn = schedule_menu.getOpenLectureBtn();
             
-            
             login_main_panel = ll.getMainPanel();
             main_main_panel = ml.getMainPanel();
             
@@ -176,8 +167,6 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             id_field.addActionListener(this);
             pass_field.addActionListener(this);
             open_btn.addActionListener(this);
-            peep_btn.addActionListener(this);
-            current_menu.getGrade().addActionListener(this);
             
             ll.getMainFrame().setVisible(false);
             ml.getMainFrame().setVisible(true);
@@ -192,29 +181,10 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       if (btn_String.equals("시간표 엿보기")) {
           System.out.println("시간표 엿보기");
 
-          writeToSocket(new Packet(std, 3));
+          writeToSocket(new Packet(std, 4));
           ArrayList<Lecture> peepLecs = readFromSocket().getLecList();
-          this.peep_menu = new Peep_Menu_Panel(peepLecs);
           
-          change_pane.remove(1);
-          change_pane.add(peep_menu.getContents_Panel());
-          change_pane.updateUI();
-       }
-      
-      if (btn_String.equals("강의 추천하기")) {
-          System.out.println("강의 추천하기");
-
-          ArrayList<Lecture> lecList = std.getOldLectureList().getLecList();
-          recm_menu = new Recommand_Menu_Panel(lecList);
-          recm_menu.addWindowListener(new WindowAdapter()
-          {
-              @Override
-              public void windowClosing(WindowEvent e)
-              {
-            	  writeToSocket(new Packet(recm_menu.getLecList(), 4));
-                  e.getWindow().dispose();
-              }
-          });
+          
        }
    }
 

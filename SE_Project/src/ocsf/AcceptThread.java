@@ -3,7 +3,6 @@ package ocsf;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Random;
 
 import db.LectureDBAccessor;
 import db.StudentDBAccessor;
@@ -61,11 +60,6 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				pkt = new Packet(findTimetable(usr2));
 				writeToSocket(pkt);
 				break;
-				
-			case 4:  // 4 : Write Lecture List
-				System.out.println("Request 4");
-				lecDB.writeFile(pkt.getLecList());
-				break;
 			}
 		}
 	}
@@ -93,12 +87,12 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 	}
 
 	private ArrayList<Lecture> findTimetable(Student usr) {
-		ArrayList<Student> stdList = stdDB.readFile();
-		while(true) {
-			Student std = stdList.get(Math.abs(new Random().nextInt()) % stdList.size());
+		for (Student std : stdDB.readFile()) {
 			if (usr.getYear() == std.getYear()) {
 				return std.getTemporaryList().getLecList();
 			}
 		}
+
+		return null;
 	}
 }
