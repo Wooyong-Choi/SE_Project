@@ -6,12 +6,14 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import gui.Open_Menu_Panel;
+import info.Lecture;
 import info.Student;
 import ocsf.Common;
 import ocsf.Packet;
@@ -54,7 +56,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       this.cur_btn = ml.getCurrentBtn();
       this.sche_btn = ml.getScheduleBtn();
       
-      this.current_menu = new Current_Menu_Panel(std);
+      this.current_menu = new Current_Menu_Panel();
       this.schedule_menu = new Schedule_Menu_Panel();
       
       open_btn = schedule_menu.getOpenLectureBtn();
@@ -148,7 +150,9 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       
       if (btn_String.equals("개설강좌 조회")) {
          System.out.println("개설강좌 조회");
-         omp = new Open_Menu_Panel();
+         writeToSocket(new Packet(2));
+         ArrayList<Lecture> lecList = readFromSocket().getLecList();
+         omp = new Open_Menu_Panel(std, lecList);
       }
       
       if (btn_String.equals("  로그인  ")) {

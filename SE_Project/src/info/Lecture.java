@@ -11,6 +11,7 @@ public class Lecture implements Serializable {
 	private int credit;
 	private int year;
 	private boolean design;
+	private int star;
 	
 
 	// Constructor
@@ -23,10 +24,15 @@ public class Lecture implements Serializable {
 		name = nm;
 		credit = cdt;
 		design = d;
+		star = 0;
 	}
 	
 	
 	// Getter & Setter
+	
+	public void up_star() {
+		star++;
+	}
 	
 	
 	public LectureKind getKind() {
