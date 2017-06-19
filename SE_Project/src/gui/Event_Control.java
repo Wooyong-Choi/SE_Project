@@ -97,7 +97,8 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		}
 		
 		if (btn_String.equals("  ·Î±×ÀÎ  ")) {
-			Packet pkt = new Packet(new Student(id_field.getText(), pass_field.getText()), 1);
+			Student usr = new Student(id_field.getText(), pass_field.getText());
+			Packet pkt = new Packet(usr, 0);
 			writeToSocket(pkt);
 			pkt = readFromSocket();
 			

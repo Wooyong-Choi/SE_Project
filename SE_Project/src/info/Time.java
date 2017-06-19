@@ -1,6 +1,8 @@
 package info;
 
-public class Time {
+import java.io.Serializable;
+
+public class Time implements Serializable {
 	
 	/**
 	 * 1 : ¿ù¿äÀÏ
