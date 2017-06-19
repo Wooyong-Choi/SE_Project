@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import gui.Open_Menu_Panel;
 import info.Student;
 import ocsf.Common;
 import ocsf.Packet;
@@ -23,6 +24,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 	private JButton sche_btn;
 	private JButton mem_btn;
 	private JButton change_btn;
+	private JButton open_btn;
 	private Login_Layout ll;
 	private String btn_String;
 	private TextField id_field, pass_field;
@@ -35,6 +37,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 	private boolean check;
 	private JPanel change_pane;
 	private Info_Change_Dialog icd;
+	private Open_Menu_Panel omp;
 	
 	
 	public Event_Control() {
@@ -52,6 +55,8 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		this.current_menu = new Current_Menu_Panel();
 		this.schedule_menu = new Schedule_Menu_Panel();
 		
+		open_btn = schedule_menu.getOpenLectureBtn();
+		
 		login_main_panel = ll.getMainPanel();
 		main_main_panel = ml.getMainPanel();
 		
@@ -64,6 +69,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		login_btn.addActionListener(this);
 		id_field.addActionListener(this);
 		pass_field.addActionListener(this);
+		open_btn.addActionListener(this);
 		mem_btn.addActionListener(this);
 		
 		try {
@@ -136,6 +142,11 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 			change_pane.remove(1);
 			change_pane.add(schedule_menu.getSchedulePanel());
 			change_pane.updateUI();
+		}
+		
+		if (btn_String.equals("개설강좌 조회")) {
+			System.out.println("개설강좌 조회");
+			omp = new Open_Menu_Panel();
 		}
 		
 		if (btn_String.equals("  로그인  ")) {

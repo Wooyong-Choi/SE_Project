@@ -36,7 +36,6 @@ public class Main_Layout {
 
 	public Main_Layout() {
 		this.current = new JButton("수강현황 조회");
-		this.open = new JButton("개설강좌 조회");
 		this.schedule = new JButton("시간표 관리");
 		this.peep = new JButton("시간표 엿보기");
 		
@@ -58,16 +57,13 @@ public class Main_Layout {
 	}
 	 
 	public void setMenuPanel(JPanel menu) {
-		menu.setLayout(new GridLayout(5, 1, 8, 8));
+		menu.setLayout(new GridLayout(4, 1, 8, 8));
 		menu.setBackground(Color.WHITE);
 		onUse.setFont(mainFont);
 		onUse.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		current.setFont(mainFont);
 		current.setBackground(Color.YELLOW);
-		
-		open.setFont(mainFont);
-		open.setBackground(Color.YELLOW);
 		
 		schedule.setFont(mainFont);
 		schedule.setBackground(Color.YELLOW);
@@ -77,7 +73,6 @@ public class Main_Layout {
 		
 		menu.add(onUse);
 		menu.add(current);
-		menu.add(open);
 		menu.add(schedule);
 		menu.add(peep);
 		

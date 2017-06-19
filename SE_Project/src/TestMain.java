@@ -14,9 +14,9 @@ public class TestMain {
 		
 		TimeTable lecList = new TimeTable();
 		
-		lecList.addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true));
-		lecList.addLecture(new Lecture(LectureKind.전공기반, "COMP456", "공수", 3, true));
-		lecList.addLecture(new Lecture(LectureKind.기본소양, "COMP789", "기창공", 3, true));
+		lecList.addLecture(new Lecture(1, LectureKind.공학전공, "COMP123", "소공", 3, true));
+		lecList.addLecture(new Lecture(1, LectureKind.전공기반, "COMP456", "공수", 3, true));
+		lecList.addLecture(new Lecture(1, LectureKind.기본소양, "COMP789", "기창공", 3, true));
 		
 		
 		
