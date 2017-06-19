@@ -38,7 +38,6 @@ public class Open_Menu_Panel extends JDialog {
 		
 		scroll = new JScrollPane(table);
 		
-		
 		add(scroll);
 		
 		setLocationRelativeTo(null);

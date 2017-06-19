@@ -45,7 +45,7 @@ public class Packet implements Serializable {
 	}
 	
 	public Packet(ArrayList<Lecture> data) {
-		this.lecList = lecList;
+		this.lecList = data;
 	}
 	
 	
