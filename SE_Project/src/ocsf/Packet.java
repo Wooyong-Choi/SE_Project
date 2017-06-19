@@ -48,10 +48,6 @@ public class Packet implements Serializable {
 		this.lecList = data;
 	}
 	
-	
-
-	
-
 	// Getter & Setter
 	
 
