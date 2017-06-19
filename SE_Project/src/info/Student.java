@@ -39,12 +39,12 @@ public class Student extends User {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setAge(int age) {
-		this.year = age;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public String getNo() {
