@@ -1,5 +1,6 @@
 package db;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,11 +22,9 @@ public class LectureDBAccessor {
 	}
 	
 	public ArrayList<Lecture> readFile() {
-		try {
+		try {			
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-			
 			ArrayList<Lecture> list = (ArrayList<Lecture>) in.readObject();
-			
 			in.close();
 			
 			return list;
@@ -52,11 +51,9 @@ public class LectureDBAccessor {
 	}
 
 	public void writeFile(ArrayList<Lecture> items) {
-		try {
+		try {			
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-			
 			out.writeObject(items);
-			
 			out.close();
 			
 		} catch (FileNotFoundException e) {

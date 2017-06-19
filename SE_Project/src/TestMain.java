@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import db.LectureDBAccessor;
@@ -5,7 +6,6 @@ import db.StudentDBAccessor;
 import info.Lecture;
 import info.LectureKind;
 import info.Student;
-import info.Time;
 import info.TimeTable;
 
 public class TestMain {
@@ -14,9 +14,9 @@ public class TestMain {
 		
 		TimeTable lecList = new TimeTable();
 		
-		lecList.addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true, new Time(1, "1A", "2A")));
-		lecList.addLecture(new Lecture(LectureKind.전공기반, "COMP456", "공수", 3, true, new Time(2, "2B", "3A")));
-		lecList.addLecture(new Lecture(LectureKind.기본소양, "COMP789", "기창공", 3, true, new Time(3, "3A", "4A")));
+		lecList.addLecture(new Lecture(LectureKind.공학전공, "COMP123", "소공", 3, true));
+		lecList.addLecture(new Lecture(LectureKind.전공기반, "COMP456", "공수", 3, true));
+		lecList.addLecture(new Lecture(LectureKind.기본소양, "COMP789", "기창공", 3, true));
 		
 		
 		
@@ -42,5 +42,8 @@ public class TestMain {
 		stdDB.writeFile(tempList);
 		
 		lecDB.writeFile(lecList.getLecList());
+		
+		System.out.println(stdDB.readFile());
+		System.out.println(lecDB.readFile());
 	}
 }

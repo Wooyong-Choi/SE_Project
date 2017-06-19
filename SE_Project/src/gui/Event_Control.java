@@ -16,11 +16,13 @@ import ocsf.Common;
 import ocsf.Packet;
 import ocsf.SocketCommunication;
 
-public class Event_Control extends SocketCommunication implements Runnable, ActionListener {
+public class Event_Control extends SocketCommunication implements Runnable, ActionListener{
 	
 	private JButton login_btn;
 	private JButton cur_btn;
 	private JButton sche_btn;
+	private JButton mem_btn;
+	private JButton change_btn;
 	private Login_Layout ll;
 	private String btn_String;
 	private TextField id_field, pass_field;
@@ -32,18 +34,17 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 	private Schedule_Menu_Panel schedule_menu;
 	private boolean check;
 	private JPanel change_pane;
-	
+	private Info_Change_Dialog icd;
 	
 	
 	public Event_Control() {
-		super();
-		
 		this.check = true;
 		this.ll = new Login_Layout();
 		this.ml = new Main_Layout();
 		this.login_btn = ll.getLoginBtn();
 		this.id_field = ll.getUserId();
 		this.pass_field = ll.getUserPass();
+		this.mem_btn = ll.getMemberBtn();
 		
 		this.cur_btn = ml.getCurrentBtn();
 		this.sche_btn = ml.getScheduleBtn();
@@ -63,14 +64,23 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		login_btn.addActionListener(this);
 		id_field.addActionListener(this);
 		pass_field.addActionListener(this);
+		mem_btn.addActionListener(this);
 		
 		try {
-			sock = new Socket("127.0.0.1", Common.portNum);
+			this.sock = new Socket("127.0.0.1", Common.portNum);
 			
-		} catch (UnknownHostException e) {
+			boolean result = sock.isConnected();
+			if (result) {
+				System.out.println("Success");	
+			}
+			else
+				System.err.println("Fail");
+		} 
+		catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -81,6 +91,38 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 		// TODO Auto-generated method stub
 		btn_String = new String();
 		btn_String = event.getActionCommand();
+		
+		if (btn_String.equals("정보변경")) {
+			System.out.println("정보변경");
+			icd = new Info_Change_Dialog();
+			change_btn = icd.getChange_btn();
+			change_btn.addActionListener(this);
+		}
+		
+		if (btn_String.equals("변경하기")) {
+			System.out.println("변경하기");
+			
+			Student usr = new Student(icd.getBefore_id_field().getText(), icd.getBefore_pass_field().getText());
+			Packet pkt = new Packet(usr, 0);
+			writeToSocket(pkt);
+			pkt = readFromSocket();
+			
+			// 로그인 성공
+			if (pkt.getRequest() != -1) {
+				Student std = pkt.getStd();
+				std.setID(icd.getChange_id_field().getText());
+				std.setPassword(icd.getChange_pass_field().getText());
+				
+				pkt = new Packet(std, 1);
+				writeToSocket(pkt);
+				
+				icd.setVisible(false);
+			}
+			// 로그인 실패
+			else {
+				System.out.println("실패");
+			}
+		}
 		
 		if (btn_String.equals("수강현황 조회")) {
 			System.out.println("수강현황 조회");
@@ -104,6 +146,8 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
 			
 			// 로그인 성공
 			if (pkt.getRequest() != -1) {
+				System.out.println("로그인 성공");
+				
 				ml.setStdInfo(pkt.getStd());
 				
 				ll.getMainFrame().setVisible(false);

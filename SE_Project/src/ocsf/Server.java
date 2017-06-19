@@ -17,7 +17,7 @@ public class Server {
 			AcceptThread acptThd = new AcceptThread(s_sock.accept());
 			new Thread(acptThd).start();
 			
-			System.out.println("유저 Connection Request...");
+			System.out.println("유저 연결요청 수락");
 		}
 	}
 }

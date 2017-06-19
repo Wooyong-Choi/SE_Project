@@ -1,7 +1,5 @@
 package info;
 
-import java.util.ArrayList;
-
 public class Student extends User {
 
 	private String name;

@@ -25,7 +25,7 @@ public class Login_Layout {
 	private JLabel empty = new JLabel("                                          ");
 	private JLabel empty2 = new JLabel("         ");
 	private JLabel login_Hello = new JLabel("### 룰루랄라 프로그램에 오신 것을 환영합니다 ###");
-	private JButton member = new JButton("회원가입");
+	private JButton member = new JButton("정보변경");
 	private JButton login = new JButton("  로그인  ");
 	private Font mainFont = new Font("main", Font.BOLD, 30);
 	private TextField id_field = new TextField(20);
