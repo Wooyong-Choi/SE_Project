@@ -3,6 +3,9 @@ package gui;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -15,6 +18,7 @@ import javax.swing.JPanel;
 import gui.Open_Menu_Panel;
 import info.Lecture;
 import info.Student;
+import info.TimeTable;
 import ocsf.Common;
 import ocsf.Packet;
 import ocsf.SocketCommunication;
@@ -42,6 +46,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private Info_Change_Dialog icd;
    private Open_Menu_Panel omp;
    private Peep_Menu_Panel peep_menu;
+   private Recommand_Menu_Panel recm_menu;
    
    private Student std;
    
@@ -158,6 +163,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             
             open_btn = schedule_menu.getOpenLectureBtn();
             
+            
             login_main_panel = ll.getMainPanel();
             main_main_panel = ml.getMainPanel();
             
@@ -171,6 +177,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             pass_field.addActionListener(this);
             open_btn.addActionListener(this);
             peep_btn.addActionListener(this);
+            current_menu.getGrade().addActionListener(this);
             
             ll.getMainFrame().setVisible(false);
             ml.getMainFrame().setVisible(true);
@@ -192,6 +199,22 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
           change_pane.remove(1);
           change_pane.add(peep_menu.getContents_Panel());
           change_pane.updateUI();
+       }
+      
+      if (btn_String.equals("강의 추천하기")) {
+          System.out.println("강의 추천하기");
+
+          ArrayList<Lecture> lecList = std.getOldLectureList().getLecList();
+          recm_menu = new Recommand_Menu_Panel(lecList);
+          recm_menu.addWindowListener(new WindowAdapter()
+          {
+              @Override
+              public void windowClosing(WindowEvent e)
+              {
+            	  writeToSocket(new Packet(recm_menu.getLecList(), 4));
+                  e.getWindow().dispose();
+              }
+          });
        }
    }
 

@@ -94,8 +94,6 @@ public class TestMain {
 		tempList.add(makeStudent("1616", "1616", "연우진", 3, "2011105236"));
 		tempList.add(makeStudent("1717", "1717", "박보검", 3, "2013105666"));
 
-		
-		
 		// Testcase generate
 		StudentDBAccessor stdDB = new StudentDBAccessor();
 		LectureDBAccessor lecDB = new LectureDBAccessor();
@@ -115,7 +113,7 @@ public class TestMain {
 		boolean[] mark = new boolean[40];
 		
 		for (int i = 0; i < 30; i++) {
-			int rnd = Math.abs(a.nextInt()) % 40;
+			int rnd = Math.abs(a.nextInt()) % 57;
 			if (mark[rnd] == false) {
 				temp.getOldLectureList().getLecList().add(timeTable.getLecList().get(rnd));
 				mark[rnd] = true;
@@ -136,7 +134,7 @@ public class TestMain {
 		boolean[] mark = new boolean[40];
 		int rndidx = Math.abs(a.nextInt()) % 5 + 4;
 		for (int i = 0; i < rndidx; i++) {
-			int rnd = Math.abs(a.nextInt()) % 40;
+			int rnd = Math.abs(a.nextInt()) % 57;
 			if (mark[rnd] == false) {
 				std.getTemporaryList().getLecList().add(timeTable.getLecList().get(rnd));
 				mark[rnd] = true;

@@ -61,6 +61,11 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 				pkt = new Packet(findTimetable(usr2));
 				writeToSocket(pkt);
 				break;
+				
+			case 4:  // 4 : Write Lecture List
+				System.out.println("Request 4");
+				lecDB.writeFile(pkt.getLecList());
+				break;
 			}
 		}
 	}

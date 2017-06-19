@@ -81,6 +81,20 @@ public class Current_Menu_Panel {
 		
 	}
 	
+	
+	
+	public JButton getGrade() {
+		return grade;
+	}
+
+
+
+	public void setGrade(JButton grade) {
+		this.grade = grade;
+	}
+
+
+
 	public JTable getTable() {
 		return table;
 	}
