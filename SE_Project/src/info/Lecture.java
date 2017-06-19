@@ -34,6 +34,10 @@ public class Lecture implements Serializable {
 		star++;
 	}
 	
+	public int getStar() {
+		return star;
+	}
+	
 	
 	public LectureKind getKind() {
 		return kind;
