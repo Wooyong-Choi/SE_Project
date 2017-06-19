@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -13,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import info.Lecture;
-import info.Student;
 
 public class Recommand_Menu_Panel extends JDialog {
 	

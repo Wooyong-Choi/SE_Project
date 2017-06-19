@@ -1,7 +1,6 @@
 package info;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Lecture implements Serializable {
    

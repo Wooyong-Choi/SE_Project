@@ -44,11 +44,11 @@ public class Current_Menu_Panel {
 		//이부분에 테이블 contents 초기화
 		String[] header = {" ", "현재학점", "남은학점", "졸업요건"};
 		String[][] contents = {
-				{"총 이수학점", tCredit+"", 150-tCredit+"", "150"},
-				{"공학전공"  , mCredit+"", 75-mCredit+"" ,  "75"},
-				{"설계학점"  , dCredit+"", 16-dCredit+"" ,  "16"},
-				{"전공기반"  , bCredit+"", 24-bCredit+"", "24"},
-				{"기본소양"  , lCredit+"", 15-lCredit+"", "15"}
+				{"총 이수학점", tCredit+"", (150-tCredit>0 ? 150-tCredit : 0)+"", "150"},
+				{"공학전공"  , mCredit+"", (75-mCredit>0 ? 75-mCredit : 0)+"" ,  "75"},
+				{"설계학점"  , dCredit+"", (16-dCredit>0 ? 16-dCredit : 0)+"" ,  "16"},
+				{"전공기반"  , bCredit+"", (24-bCredit>0 ? 24-bCredit : 0)+"", "24"},
+				{"기본소양"  , lCredit+"", (15-lCredit>0 ? 15-lCredit : 0)+"", "15"}
 				};
 		
 		model = new DefaultTableModel(contents, header);

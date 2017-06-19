@@ -20,7 +20,7 @@ public class TestMain {
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP789", "기초창의공학설계", 3, true));
 		timeTable.addLecture(new Lecture(2, LectureKind.전공기반, "COMP575", "이산수학", 3, false));
 		timeTable.addLecture(new Lecture(3, LectureKind.기본소양, "COMP247", "서양의역사와문화", 3, false));
-		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP788", "컼파일러", 3, false));
+		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP788", "컴파일러", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP782", "실용화법", 3, false));
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP774", "알고리즘", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.공학전공, "COMP865", "기초프로그래잉", 3, false));
@@ -52,7 +52,7 @@ public class TestMain {
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP355", "컴퓨터구조", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP995", "논리와비판적사고", 3, false));
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP501", "컴퓨터윤리", 3, false));
-		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP043", "웬프로그래밍", 3, false));
+		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP043", "웹프로그래밍", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP091", "실용영어", 3, false));
 		timeTable.addLecture(new Lecture(2, LectureKind.전공기반, "COMP320", "화학1", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.전공기반, "COMP020", "기초공학물리학실험", 3, false));
@@ -110,7 +110,7 @@ public class TestMain {
 		Student temp = new Student(ID, PW, name, year, no);
 		
 		Random a = new Random();
-		boolean[] mark = new boolean[40];
+		boolean[] mark = new boolean[57];
 		
 		for (int i = 0; i < 30; i++) {
 			int rnd = Math.abs(a.nextInt()) % 57;
@@ -131,7 +131,7 @@ public class TestMain {
 	public static void setTempTimeTable(Student std) {
 		
 		Random a = new Random();
-		boolean[] mark = new boolean[40];
+		boolean[] mark = new boolean[57];
 		int rndidx = Math.abs(a.nextInt()) % 5 + 4;
 		for (int i = 0; i < rndidx; i++) {
 			int rnd = Math.abs(a.nextInt()) % 57;
