@@ -9,13 +9,15 @@ public class Lecture implements Serializable {
 	private String no;
 	private String name;
 	private int credit;
+	private int year;
 	private boolean design;
 	
 
 	// Constructor
 	public Lecture() { }
 	
-	public Lecture(LectureKind kd, String n, String nm, int cdt, boolean d) {
+	public Lecture(int y, LectureKind kd, String n, String nm, int cdt, boolean d) {
+		year = y;
 		kind = kd;
 		no = n;
 		name = nm;
@@ -25,8 +27,18 @@ public class Lecture implements Serializable {
 	
 	
 	// Getter & Setter
+	
+	
 	public LectureKind getKind() {
 		return kind;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public void setKind(LectureKind kind) {
