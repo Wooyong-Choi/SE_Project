@@ -175,6 +175,15 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          else {
             System.out.println("실패");
          }
+         
+         if (btn_String.equals("시간표 엿보기")) {
+             System.out.println("시간표 엿보기");
+
+             writeToSocket(new Packet(std, 4));
+             ArrayList<Lecture> peepLecs = readFromSocket().getLecList();
+             
+             
+          }
       }
    }
 
