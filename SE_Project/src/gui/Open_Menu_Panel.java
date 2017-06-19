@@ -74,7 +74,7 @@ public class Open_Menu_Panel extends JDialog {
 					continue;
 				}
 				
-				model = (DefaultTableModel)table.getModel();
+				model = (DefaultTableModel) table.getModel();
 				model.addRow(row_contents);
 			}
 		}

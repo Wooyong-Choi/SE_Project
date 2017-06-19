@@ -27,6 +27,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private JButton mem_btn;
    private JButton change_btn;
    private JButton open_btn;
+   private JButton peep_btn;
    private Login_Layout ll;
    private String btn_String;
    private TextField id_field, pass_field;
@@ -40,6 +41,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private JPanel change_pane;
    private Info_Change_Dialog icd;
    private Open_Menu_Panel omp;
+   private Peep_Menu_Panel peep_menu;
    
    private Student std;
    
@@ -55,6 +57,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       
       this.cur_btn = ml.getCurrentBtn();
       this.sche_btn = ml.getScheduleBtn();
+      this.peep_btn = ml.getPeepBtn();
       
       login_btn.addActionListener(this);
       mem_btn.addActionListener(this);
@@ -167,6 +170,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
             id_field.addActionListener(this);
             pass_field.addActionListener(this);
             open_btn.addActionListener(this);
+            peep_btn.addActionListener(this);
             
             ll.getMainFrame().setVisible(false);
             ml.getMainFrame().setVisible(true);
@@ -181,10 +185,13 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
       if (btn_String.equals("시간표 엿보기")) {
           System.out.println("시간표 엿보기");
 
-          writeToSocket(new Packet(std, 4));
+          writeToSocket(new Packet(std, 3));
           ArrayList<Lecture> peepLecs = readFromSocket().getLecList();
+          this.peep_menu = new Peep_Menu_Panel(peepLecs);
           
-          
+          change_pane.remove(1);
+          change_pane.add(peep_menu.getContents_Panel());
+          change_pane.updateUI();
        }
    }
 

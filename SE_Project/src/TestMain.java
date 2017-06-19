@@ -125,6 +125,8 @@ public class TestMain {
 			}
 		}
 		
+		setTempTimeTable(temp);
+		
 		return temp;
 	}
 	
@@ -136,7 +138,7 @@ public class TestMain {
 		for (int i = 0; i < 5; i++) {
 			int rnd = Math.abs(a.nextInt()) % 40;
 			if (mark[rnd] == false) {
-				std.getOldLectureList().getLecList().add(timeTable.getLecList().get(rnd));
+				std.getTemporaryList().getLecList().add(timeTable.getLecList().get(rnd));
 				mark[rnd] = true;
 			} else {
 				i--;

@@ -3,6 +3,7 @@ package ocsf;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 import db.LectureDBAccessor;
 import db.StudentDBAccessor;
@@ -87,12 +88,12 @@ public class AcceptThread extends SocketCommunication implements Runnable {
 	}
 
 	private ArrayList<Lecture> findTimetable(Student usr) {
-		for (Student std : stdDB.readFile()) {
+		ArrayList<Student> stdList = stdDB.readFile();
+		while(true) {
+			Student std = stdList.get(Math.abs(new Random().nextInt()) % stdList.size());
 			if (usr.getYear() == std.getYear()) {
 				return std.getTemporaryList().getLecList();
 			}
 		}
-
-		return null;
 	}
 }
