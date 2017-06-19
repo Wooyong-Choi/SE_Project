@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -13,12 +12,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import gui.Open_Menu_Panel;
 import info.Lecture;
 import info.Student;
-import info.TimeTable;
 import ocsf.Common;
 import ocsf.Packet;
 import ocsf.SocketCommunication;
@@ -121,7 +119,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          }
          // 변경하기 실패
          else {
-            System.out.println("실패");
+        	 JOptionPane.showMessageDialog(null, "변경에 실패했습니다.", "변경 실패", JOptionPane.ERROR_MESSAGE);
          }
       }
       
@@ -185,7 +183,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          }
          // 로그인 실패
          else {
-            System.out.println("실패");
+        	 JOptionPane.showMessageDialog(null, "로그인에 실패했습니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
          }
       }
       
