@@ -14,6 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import info.Lecture;
 import info.Student;
@@ -45,6 +50,11 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
    private Open_Menu_Panel omp;
    private Peep_Menu_Panel peep_menu;
    private Recommand_Menu_Panel recm_menu;
+   private ListSelectionModel lsm;
+   private ArrayList<Lecture> toSchedule;
+   private ArrayList<Lecture> fromOpen;
+   private DefaultTableModel addModel;
+   private JTable addTable;
    
    private Student std;
    
@@ -119,7 +129,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          }
          // 변경하기 실패
          else {
-        	 JOptionPane.showMessageDialog(null, "변경에 실패했습니다.", "변경 실패", JOptionPane.ERROR_MESSAGE);
+            System.out.println("실패");
          }
       }
       
@@ -142,6 +152,43 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
          writeToSocket(new Packet(2));
          ArrayList<Lecture> lecList = readFromSocket().getLecList();
          omp = new Open_Menu_Panel(std, lecList);
+         lsm = omp.getSelectionModel();
+         
+         addModel = schedule_menu.getModel();
+         addTable = schedule_menu.getTable();
+         
+         toSchedule = omp.getOpenList();
+         lsm.addListSelectionListener(new ListSelectionListener() {
+           String[] contents = new String[7];
+         int row;
+         @Override
+         public void valueChanged(ListSelectionEvent e) {
+            for (int i = 0; i < addModel.getRowCount(); i++) {
+               String addName = addModel.getValueAt(i, 2).toString();
+               if (addName.equals(omp.getSelectedLectureNo((ListSelectionModel) e.getSource()))) {
+                  return;
+               }
+            }
+            fromOpen = new ArrayList<Lecture>();
+            // TODO Auto-generated method stub
+            if (!lsm.isSelectionEmpty()) {
+               row = lsm.getMinSelectionIndex();
+               
+            }
+            
+            fromOpen.add(toSchedule.get(row));
+            contents[0] = String.valueOf(toSchedule.get(row).getYear());
+            contents[1] = toSchedule.get(row).getKind().toString();
+            contents[2] = String.valueOf(toSchedule.get(row).getNo());
+            contents[3] = toSchedule.get(row).getName();
+            contents[4] = String.valueOf(toSchedule.get(row).getCredit());
+            contents[5] = toSchedule.get(row).isDesign() ? "설계" : "";
+            contents[6] = String.valueOf(toSchedule.get(row).getStar());
+            
+            addModel = (DefaultTableModel)addTable.getModel();
+            addModel.addRow(contents);
+         }
+      });
       }
       
       if (btn_String.equals("  로그인  ")) {
@@ -209,7 +256,7 @@ public class Event_Control extends SocketCommunication implements Runnable, Acti
               @Override
               public void windowClosing(WindowEvent e)
               {
-            	  writeToSocket(new Packet(recm_menu.getLecList(), 4));
+                 writeToSocket(new Packet(recm_menu.getLecList(), 4));
                   e.getWindow().dispose();
               }
           });

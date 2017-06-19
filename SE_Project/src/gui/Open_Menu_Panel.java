@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +27,8 @@ public class Open_Menu_Panel extends JDialog {
    private String[][] row_contents;
    private Student student;
    private ArrayList<Lecture> pre;
+   private ListSelectionModel selection;
+   private ArrayList<Lecture> temp;
    
    public Open_Menu_Panel(Student std, ArrayList<Lecture> lec) {
       setTitle("개설강좌 조회");
@@ -35,7 +38,7 @@ public class Open_Menu_Panel extends JDialog {
       pre = student.getOldLectureList().getLecList();
       row_contents = new String[lec.size()][7];
       
-      ArrayList<Lecture> temp = new ArrayList<Lecture>();
+      temp = new ArrayList<Lecture>();
       
       for (int i = 0; i < lec.size(); i++) {
          temp.add(lec.get(i));
@@ -113,6 +116,8 @@ public class Open_Menu_Panel extends JDialog {
       table.getTableHeader().setFont(mainfont);
       table.setRowHeight(100);
       
+      selection = table.getSelectionModel();
+      
       
       // DefaultTableCellHeaderRenderer 생성 (가운데 정렬을 위한)
       DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
@@ -137,5 +142,17 @@ public class Open_Menu_Panel extends JDialog {
       setVisible(true);
       
       
+   }
+   
+   public String getSelectedLectureNo(ListSelectionModel sel) {
+      return model.getValueAt(sel.getMinSelectionIndex(), 2).toString();
+   }
+   
+   public ListSelectionModel getSelectionModel() {
+      return selection;
+   }
+   
+   public ArrayList<Lecture> getOpenList() {
+      return temp;
    }
 }
