@@ -13,6 +13,7 @@ public class Packet implements Serializable {
 	 * 0 : Read Student
 	 * 1 : Write Student
 	 * 2 : Read Lecture List
+	 * 3 : Peep other's timetable
 	 */
 	private int request;
 	private Student std;
@@ -20,6 +21,11 @@ public class Packet implements Serializable {
 	
 	public Packet() {
 		request = -1;
+	}
+	
+	
+	public Packet(int req) {
+		request = req; 
 	}
 	
 	public Packet(Student std, int req) {
@@ -30,6 +36,8 @@ public class Packet implements Serializable {
 	public Packet(ArrayList<Lecture> data) {
 		this.lecList = lecList;
 	}
+	
+	
 
 	
 
