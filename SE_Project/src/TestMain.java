@@ -45,7 +45,7 @@ public class TestMain {
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP951", "IT지적재산권", 3, false));
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP753", "네트워크프로그래밍", 3, false));
 		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP112", "안드로이드프로그래밍", 3, false));
-		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP278", "그래픽스", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP278", "컴퓨터그래픽스", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP792", "심리학의이해", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.전공기반, "COMP866", "기초물리전자실험", 3, false));
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP451", "운영체제", 3, false));
@@ -55,6 +55,23 @@ public class TestMain {
 		timeTable.addLecture(new Lecture(3, LectureKind.공학전공, "COMP043", "웬프로그래밍", 3, false));
 		timeTable.addLecture(new Lecture(1, LectureKind.기본소양, "COMP091", "실용영어", 3, false));
 		timeTable.addLecture(new Lecture(2, LectureKind.전공기반, "COMP320", "화학1", 3, false));
+		timeTable.addLecture(new Lecture(1, LectureKind.전공기반, "COMP020", "기초공학물리학실험", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP021", "종합설계프로젝트1", 4, true));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP022", "종합설계프로젝트2", 4, true));
+		timeTable.addLecture(new Lecture(2, LectureKind.기본소양, "COMP023", "문화기술개론", 3, false));
+		timeTable.addLecture(new Lecture(2, LectureKind.기본소양, "COMP024", "공학프로젝트매니지먼트", 3, true));
+		timeTable.addLecture(new Lecture(2, LectureKind.기본소양, "COMP025", "디자인과현대문화", 3, false));
+		timeTable.addLecture(new Lecture(2, LectureKind.전공기반, "COMP026", "생물학", 3, false));
+		timeTable.addLecture(new Lecture(2, LectureKind.기본소양, "COMP027", "과학과기술글쓰기", 3, false));
+		timeTable.addLecture(new Lecture(3, LectureKind.기본소양, "COMP028", "심리학의이해", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP029", "IT지식재산권", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP030", "무선네트워크", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP031", "소프트웨어특강", 2, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP032", "디지털미디어아트", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP033", "프로그래밍언어론", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP034", "정보보호론", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP035", "컴퓨터비전", 3, false));
+		timeTable.addLecture(new Lecture(4, LectureKind.공학전공, "COMP036", "컴퓨터게임제작", 3, false));
 		
 		// ID, PW, 이름, 학년, 학번
 		
@@ -97,7 +114,7 @@ public class TestMain {
 		Random a = new Random();
 		boolean[] mark = new boolean[40];
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 30; i++) {
 			int rnd = Math.abs(a.nextInt()) % 40;
 			if (mark[rnd] == false) {
 				temp.getOldLectureList().getLecList().add(timeTable.getLecList().get(rnd));
@@ -109,5 +126,22 @@ public class TestMain {
 		}
 		
 		return temp;
+	}
+	
+	public static void setTempTimeTable(Student std) {
+		
+		Random a = new Random();
+		boolean[] mark = new boolean[40];
+		
+		for (int i = 0; i < 5; i++) {
+			int rnd = Math.abs(a.nextInt()) % 40;
+			if (mark[rnd] == false) {
+				std.getOldLectureList().getLecList().add(timeTable.getLecList().get(rnd));
+				mark[rnd] = true;
+			} else {
+				i--;
+				continue;
+			}
+		}
 	}
 }
